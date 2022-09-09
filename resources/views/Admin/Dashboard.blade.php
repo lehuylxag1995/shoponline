@@ -2,7 +2,7 @@
 
 @section('title', 'dashboard')
 
-@section('content')
+{{-- @section('content')
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
@@ -59,4 +59,4 @@
             </div>
         </div>
     </section>
-@endsection
+@endsection --}}
