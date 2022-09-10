@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MenuController;
+use App\Http\Controllers\Admin\ProductController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +29,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index']);
 
     Route::prefix('/menu')->group(function () {
+
         // GET URL:/menu/list
         Route::get('/list', [MenuController::class, 'List'])->name('Menu.List');
         // GET URL:/menu/create
@@ -38,5 +42,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/edit/{menu}', [MenuController::class, 'edit'])->name('Menu.Edit');
         // PUT URL:/menu/update
         Route::put('/update', [MenuController::class, 'update'])->name('Menu.Update');
+    });
+
+    Route::prefix('/admin')->group(function () {
+        Route::resource('products', ProductController::class)->except(['show'])
+            ->missing(function (Request $req) {
+                return Redirect::route('products.index');
+            });
     });
 });
