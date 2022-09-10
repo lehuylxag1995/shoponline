@@ -6,9 +6,20 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Http\Requests\Product\StoreProductRequest;
 use App\Http\Requests\Product\UpdateProductRequest;
+use App\Repositories\Interfaces\MenuRepositoryInterface;
+use App\Repositories\Interfaces\ProductRepositoryInterface;
 
 class ProductController extends Controller
 {
+    protected $ProductRepository;
+    protected $MenuRepository;
+
+    public function __construct(ProductRepositoryInterface $p, MenuRepositoryInterface $m)
+    {
+        $this->ProductRepository = $p;
+        $this->MenuRepository = $m;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +27,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.product.list');
     }
 
     /**
@@ -26,7 +37,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $ListMenu = $this->MenuRepository->getListActive();
+        return view('admin.product.create')
+            ->with('ListMenu', $ListMenu);
     }
 
     /**
@@ -35,20 +48,14 @@ class ProductController extends Controller
      * @param  \App\Http\Requests\StoreProductRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreProductRequest $request)
+    public function store(StoreProductRequest $req)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Product $product)
-    {
-        //
+        $isSuccess = $this->ProductRepository->Store($req);
+        if ($isSuccess)
+            return redirect()->route('products.index')
+                ->with('success', 'Thêm sản phẩm thành công');
+        else
+            return back()->with('error', 'Thêm sản phẩm thất bại');
     }
 
     /**
@@ -59,7 +66,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('admin.product.edit');
     }
 
     /**

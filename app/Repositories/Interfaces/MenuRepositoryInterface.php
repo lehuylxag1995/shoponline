@@ -7,7 +7,9 @@ use App\Http\Requests\Menu\StoreRequest;
 interface MenuRepositoryInterface
 {
     /**
-     *  Lấy danh sách menu đã active
+     *  Lấy tất cả thuộc tính, điều kiện active = true
+     *
+     * @return Collection Danh sách
      */
     public function getListActive();
 

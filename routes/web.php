@@ -26,7 +26,7 @@ Route::post('/login', [LoginController::class, 'Authenticate']);
 Route::middleware(['auth'])->group(function () {
 
     // GET URL:/dashboard
-    Route::get('/dashboard', [DashboardController::class, 'index']);
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::prefix('/menu')->group(function () {
 

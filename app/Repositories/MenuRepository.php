@@ -10,10 +10,6 @@ use Exception;
 
 class MenuRepository implements MenuRepositoryInterface
 {
-    /**
-     * Lưu 1 bản ghi mới vào CSDl
-     *
-     */
     public function Store(StoreRequest $req)
     {
         $menu = new Menu();
@@ -26,28 +22,19 @@ class MenuRepository implements MenuRepositoryInterface
         return $menu->save();
     }
 
-    /**
-     *  Lấy danh sách menu đã active
-     */
+
     public function getListActive()
     {
         return Menu::where('active', true)->get();
     }
 
-    /**
-     * Lấy danh sách menu, tất cả các thuộc tính, có phân trang
-     */
     public function getList()
     {
         $data = Menu::orderBy('id', 'desc')->get();
         return $data;
     }
 
-    /**
-     * Xoá menu và toàn bộ menu phụ thuộc
-     *
-     * @return bool thành công hay không
-     */
+
     public function Remove(int $idMenu)
     {
         try {
