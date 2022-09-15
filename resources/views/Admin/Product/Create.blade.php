@@ -29,7 +29,7 @@
                 <div class="card-header">
                     <h3 class="card-title">Thêm sản phẩm</h3>
                 </div>
-                <form action="{{ route('products.store') }}" method="POST">
+                <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
                         <div class="row">

@@ -63,31 +63,17 @@
                         </div>
                         <div class="form-group">
                             <label for="content">Trạng thái:</label>
-                            @if ($menu->active)
-                                <div class="custom-control custom-radio">
-                                    <input class="custom-control-input" type="radio" id="active1" value="1"
-                                        name="active" checked>
-                                    <label for="active1" class="custom-control-label">Hiển thị trên website</label>
-                                </div>
-                                <div class="custom-control custom-radio">
-                                    <input class="custom-control-input" type="radio" value="0" id="active2"
-                                        name="active">
-                                    <label for="active2" class="custom-control-label">Không hiển thị trên website</label>
-                                </div>
-                            @else
-                                <div class="custom-control custom-radio">
-                                    <input class="custom-control-input" type="radio" id="active1" value="1"
-                                        name="active">
-                                    <label for="active1" class="custom-control-label">Hiển thị trên website</label>
-                                </div>
-                                <div class="custom-control custom-radio">
-                                    <input class="custom-control-input" type="radio" value="0" id="active2"
-                                        name="active" checked>
-                                    <label for="active2" class="custom-control-label">Không hiển thị trên website</label>
-                                </div>
-                            @endif
+                            <div class="custom-control custom-radio">
+                                <input class="custom-control-input" type="radio" id="active1" value="1"
+                                    name="active" {{ $menu->active == 1 ? 'checked' : '' }}>
+                                <label for="active1" class="custom-control-label">Hiển thị trên website</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input class="custom-control-input" type="radio" value="0" id="active2"
+                                    name="active" {{ $menu->active == 0 ? 'checked' : '' }}>
+                                <label for="active2" class="custom-control-label">Không hiển thị trên website</label>
+                            </div>
                         </div>
-
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary">Xác nhận</button>

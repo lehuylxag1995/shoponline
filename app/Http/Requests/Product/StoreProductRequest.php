@@ -32,6 +32,7 @@ class StoreProductRequest extends FormRequest
             'price_sale' => 'required|numeric|min:1',
             'description' => 'required',
             'content' => 'required',
+            'thumb' => 'image'
         ];
     }
 
@@ -49,6 +50,7 @@ class StoreProductRequest extends FormRequest
             'price_sale.numeric' => 'Giá giảm phải là kiểu số nguyên',
             'price.min' => 'Giá tiền phải lớn hơn 0',
             'price_sale.min' => 'Giá giảm phải lớn hơn 0',
+            'thumb.image' => 'Tập tin upload phải là hình ảnh',
         ];
     }
 }

@@ -44,33 +44,57 @@
                                         <th>Mã SP</th>
                                         <th>Tên SP</th>
                                         <th>Danh Mục</th>
-                                        <th>Giá</th>
-                                        <th>Giá giảm</th>
-                                        <th>Mô tả</th>
+                                        <th>Giá(VNĐ)</th>
+                                        <th>Giá giảm(VNĐ)</th>
                                         <th>Hình ảnh</th>
                                         <th>Trạng thái</th>
-                                        <th>Hành động</th>
+                                        <th colspan="2" class="text-center">Hành động</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>
-                                            <a class="btn btn-info btn-sm" href="#">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
-                                            <a class="btn btn-danger btn-sm" href="#">
-                                                <i class="fas fa-trash"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    @forelse ($listProduct as $p)
+                                        <tr>
+                                            <td><b>{{ $p->id }}</b></td>
+                                            <td>{{ $p->name }}</td>
+                                            <td>{{ $p->menu->name }}</td>
+                                            <td>{{ number_format($p->price) }}</td>
+                                            <td>{{ number_format($p->price_sale) }}</td>
+
+                                            <td>
+                                                @if ($p->thumb)
+                                                    <img src="{{ url($p->thumb) }}" alt="{{ $p->name }}" width="100px"
+                                                        height="100px">
+                                                @else
+                                                    <p>Chưa có hình</p>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if ($p->active)
+                                                    <button class="btn btn-success">Active</button>
+                                                @else
+                                                    <button class="btn btn-danger">No Active</button>
+                                                @endif
+                                            </td>
+                                            <td class="text-center">
+                                                <a class="btn btn-info btn-md"
+                                                    href="{{ route('products.edit', ['product' => $p]) }}">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                            </td>
+                                            <td class="text-center">
+                                                <form action="{{ route('products.destroy', ['product' => $p]) }}"
+                                                    method="post">
+                                                    @method('delete')
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-danger btn-md">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <h3>Chưa có dữ liệu nào...</h3>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>

@@ -27,7 +27,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('admin.product.list');
+        $list = $this->ProductRepository->getList();
+        return view('admin.product.list')
+            ->with('listProduct', $list);
     }
 
     /**
@@ -55,7 +57,8 @@ class ProductController extends Controller
             return redirect()->route('products.index')
                 ->with('success', 'Thêm sản phẩm thành công');
         else
-            return back()->with('error', 'Thêm sản phẩm thất bại');
+            return redirect()->route('products.create')
+                ->with('error', 'Thêm sản phẩm thất bại');
     }
 
     /**
@@ -66,7 +69,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('admin.product.edit');
+        return view('admin.product.edit', ['product' => $product, 'ListMenu' => $this->MenuRepository->getListActive()]);
     }
 
     /**
@@ -76,9 +79,15 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateProductRequest $request, Product $product)
+    public function update(UpdateProductRequest $req, Product $product)
     {
-        //
+        $isSuccess = $this->ProductRepository->UpdateProduct($req, $product);
+        if ($isSuccess)
+            return redirect()->route('products.index')
+                ->with('success', 'Cập nhật sản phẩm thành công');
+        else
+            return redirect()->route('products.create')
+                ->with('error', 'Cập nhật sản phẩm thất bại');
     }
 
     /**
@@ -89,6 +98,12 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $isSuccess = $this->ProductRepository->DeleteProduct($product);
+        if ($isSuccess)
+            return redirect()->route('products.index')
+                ->with('success', 'Xoá sản phẩm thành công');
+        else
+            return redirect()->route('products.index')
+                ->with('error', 'Xoá sản phẩm thất bại');
     }
 }
