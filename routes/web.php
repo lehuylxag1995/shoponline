@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\SlideController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Redirect;
@@ -48,9 +49,15 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::prefix('/admin')->group(function () {
+
         Route::resource('products', ProductController::class)->except(['show'])
             ->missing(function (Request $req) {
                 return Redirect::route('products.index');
+            });
+
+        Route::resource('/slide', SlideController::class)->except(['show'])
+            ->missing(function () {
+                return Redirect::route('slide.index');
             });
     });
 });
