@@ -21,6 +21,11 @@ use Illuminate\Support\Facades\Redirect;
 |
 */
 
+Route::get('/', function () {
+    return view('guest.home.app');
+});
+
+//==============================================================================
 
 // GET URL:/login
 Route::get('/login', [LoginController::class, 'ShowPageLogin'])->name('login');
@@ -33,7 +38,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::prefix('/menu')->group(function () {
-
         // GET URL:/menu/list
         Route::get('/list', [MenuController::class, 'List'])->name('Menu.List');
         // GET URL:/menu/create
@@ -49,7 +53,6 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::prefix('/admin')->group(function () {
-
         Route::resource('products', ProductController::class)->except(['show'])
             ->missing(function (Request $req) {
                 return Redirect::route('products.index');
