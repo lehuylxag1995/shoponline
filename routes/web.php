@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SlideController;
+use App\Http\Controllers\Guest\HomeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Redirect;
@@ -21,9 +22,8 @@ use Illuminate\Support\Facades\Redirect;
 |
 */
 
-Route::get('/', function () {
-    return view('guest.home.app');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/trang-chu', [HomeController::class, 'index'])->name('trangchu');
 
 //==============================================================================
 
