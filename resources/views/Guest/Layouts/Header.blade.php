@@ -27,7 +27,7 @@
                 <!-- Menu desktop -->
                 <div class="menu-desktop">
                     <ul class="main-menu">
-                        @include('guest.home.RecursiveMenu', ['root' => 0])
+                        @include('guest.layouts.RecursiveMenu')
                     </ul>
                 </div>
 

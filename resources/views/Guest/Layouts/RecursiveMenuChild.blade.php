@@ -2,7 +2,7 @@
     @foreach ($childs as $child)
         <li><a href="#">{{ $child->name }}</a>
             @if (count($child->childs))
-                @include('guest.home.RecursiveMenuChild', ['childs' => $child->childs])
+                @include('guest.layouts.RecursiveMenuChild', ['childs' => $child->childs])
             @endif
         </li>
     @endforeach
