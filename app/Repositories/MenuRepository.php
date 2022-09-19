@@ -10,6 +10,11 @@ use Exception;
 
 class MenuRepository implements MenuRepositoryInterface
 {
+    public function getListHot()
+    {
+        return Menu::all(['id', 'name'])->sortByDesc('parent_id')->take(3);
+    }
+
     public function Store(StoreRequest $req)
     {
         $menu = new Menu();
