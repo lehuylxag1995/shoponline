@@ -29,7 +29,7 @@ class StoreProductRequest extends FormRequest
             'name' => 'required',
             'menu_id' => 'required|numeric',
             'price' => 'required|numeric|min:1',
-            'price_sale' => 'required|numeric|min:1',
+            'price_sale' => 'numeric|min:0',
             'description' => 'required',
             'content' => 'required',
             'thumb' => 'image'
@@ -42,7 +42,6 @@ class StoreProductRequest extends FormRequest
             'name.required' => 'Bạn chưa nhập tên sản phẩm',
             'menu_id.required' => 'Bạn chưa chọn danh mục',
             'price.required' => 'Bạn chưa nhập giá sản phẩm',
-            'price_sale.required' => 'Bạn chưa nhập giá giảm sản phẩm',
             'description.required' => 'Bạn chưa nhập mô tả',
             'content.required' => 'Bạn chưa nhập mô tả chi tiết',
             'menu_id.numeric' => 'Danh mục bạn chọn chưa đúng',

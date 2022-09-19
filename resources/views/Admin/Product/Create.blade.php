@@ -60,14 +60,14 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="price">Giá gốc:</label>
-                                    <input value="{{ old('price') }}" type="number" class="form-control" name="price"
-                                        id="price">
+                                    <input value="{{ old('price') ?? 0 }}" type="number" class="form-control"
+                                        name="price" id="price">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="price_sale">Giá giảm:</label>
-                                    <input value="{{ old('price_sale') }}" type="number" class="form-control"
+                                    <input value="{{ old('price_sale') ?? 0 }}" type="number" class="form-control"
                                         name="price_sale" id="price_sale">
                                 </div>
                             </div>
@@ -96,6 +96,7 @@
                 </form>
 
             </div>
+
         </div>
     </section>
 @endsection

@@ -15,8 +15,9 @@ class ProductRepository implements ProductRepositoryInterface
 {
 
     public function getList()
-    { // Sử dụng eager loading để giảm tải
-        return Product::with('menu:id,name')->get()->sortByDesc('id');
+    {
+        $query = Product::with('menu:id,name')->orderBy('id', 'desc')->paginate(5);
+        return $query;
     }
 
     public function Store(StoreProductRequest $req)
