@@ -14,8 +14,11 @@ class HomeController extends Controller
     private $MenuRepository;
     private $ProductRepository;
 
-    public function __construct(SlideRepositoryInterface $slide, MenuRepositoryInterface $menu, ProductRepositoryInterface $product)
-    {
+    public function __construct(
+        SlideRepositoryInterface $slide,
+        MenuRepositoryInterface $menu,
+        ProductRepositoryInterface $product
+    ) {
         $this->SlideRepository = $slide;
         $this->MenuRepository = $menu;
         $this->ProductRepository = $product;
@@ -45,5 +48,15 @@ class HomeController extends Controller
             return response()->json([
                 'status' => false,
             ]);
+    }
+
+    public function LoadProductByMenu(Request $req, $slug)
+    {
+        $optionPrice = $req->query('price');
+        $menu = $this->MenuRepository->getMenuBySlug($slug);
+        $products = $this->MenuRepository->getListProductByMenu($menu->id, $optionPrice);
+        return view('guest.menu.product', [
+            'ListProduct' => $products
+        ]);
     }
 }

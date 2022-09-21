@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Redirect;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/trang-chu', [HomeController::class, 'index'])->name('trangchu');
 Route::post('/LoadMore', [HomeController::class, 'LoadMore']);
+Route::get('/danh-muc/{slug?}.html', [HomeController::class, 'LoadProductByMenu']);
 
 //==============================================================================
 

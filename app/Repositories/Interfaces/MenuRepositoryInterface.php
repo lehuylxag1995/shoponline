@@ -7,6 +7,25 @@ use App\Http\Requests\Menu\StoreRequest;
 interface MenuRepositoryInterface
 {
     /**
+     * Lấy danh sách sản phẩm phục thuộc menu bằng id menu
+     *
+     * @param Integer $idMenu
+     *
+     * @return Collection
+     */
+    public function getListProductByMenu($idMenu, $price = null);
+
+    /**
+     * Tìm 1 menu bằng slug
+     *
+     * @param string $slug
+     *
+     * @return Model
+     */
+    public function getMenuBySlug($slug);
+
+
+    /**
      *  Lấy danh sách menu hot
      *
      * @return Collection Danh sách
@@ -22,7 +41,7 @@ interface MenuRepositoryInterface
     public function getListActive();
 
     /**
-     * Lấy danh sách menu, tất cả các thuộc tính, có phân trang
+     * Lấy danh sách menu, tất cả các thuộc tính
      */
     public function getList();
 

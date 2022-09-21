@@ -20,7 +20,7 @@
             <nav class="limiter-menu-desktop container">
 
                 <!-- Logo desktop -->
-                <a href="#" class="logo">
+                <a href="{{ route('trangchu') }}" class="logo">
                     <img src="/guest/images/icons/logo-01.png" alt="IMG-LOGO">
                 </a>
 

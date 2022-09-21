@@ -26,7 +26,10 @@ class ViewServiceProvider extends ServiceProvider
     public function boot()
     {
         // Using class based composers...
-        View::composer('guest.home.app', MenuComposer::class);
+        View::composer(
+            ['guest.home.app', 'guest.menu.product'],
+            MenuComposer::class
+        );
 
         // Using closure based composers...
         // View::composer('dashboard', function ($view) {

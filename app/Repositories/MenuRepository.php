@@ -10,9 +10,34 @@ use Exception;
 
 class MenuRepository implements MenuRepositoryInterface
 {
+    public function getMenuBySlug($slug)
+    {
+        try {
+            return Menu::where('slug', $slug)->firstOrFail();
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
+    }
+    public function getListProductByMenu($idMenu, $price = null)
+    {
+        try {
+            $data = Menu::find($idMenu)->products()->where('active', 1)->get();
+
+            if ($price == "desc")
+                $sort = $data->sortByDesc('price');
+            if ($price == "asc")
+                $sort = $data->sortBy('price');
+            if (!empty($sort))
+                $data = $sort->values()->all();
+
+            return $data;
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
+    }
     public function getListHot()
     {
-        return Menu::all(['id', 'name'])->sortByDesc('parent_id')->take(3);
+        return Menu::all(['id', 'name', 'slug'])->sortByDesc('parent_id')->take(3);
     }
 
     public function Store(StoreRequest $req)
