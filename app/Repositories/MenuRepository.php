@@ -18,7 +18,24 @@ class MenuRepository implements MenuRepositoryInterface
             dd($e->getMessage());
         }
     }
-    public function getListProductByMenu($idMenu, $price = null)
+
+    public function getListProductRelatedByMenu($idMenu, $idProduct, $limit = 0)
+    {
+        try {
+            $data = Menu::find($idMenu)->products()
+                ->where('active', 1)
+                ->where('id', '!=', $idProduct)
+                ->get();
+
+            if ($limit != 0)
+                $data->take($limit);
+
+            return $data;
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
+    }
+    public function getListProductByMenu($idMenu, $price = null, $limit = 0)
     {
         try {
             $data = Menu::find($idMenu)->products()->where('active', 1)->get();

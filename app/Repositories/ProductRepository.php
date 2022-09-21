@@ -13,11 +13,21 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductRepository implements ProductRepositoryInterface
 {
-
+    public function getProductBySlug($slug)
+    {
+        try {
+            $data = Product::where('active', 1)
+                ->where('slug', $slug)
+                ->with('menu')->firstOrFail();
+            return $data;
+        } catch (Exception $th) {
+            dd($th->getMessage());
+        }
+    }
     public function getListActive($page = 1)
     {
         $pageSize = 16;
-        $data = Product::select('id', 'name', 'thumb', 'price', 'price_sale')->where('active', 1)
+        $data = Product::select('id', 'name', 'thumb', 'price', 'price_sale', 'slug')->where('active', 1)
             ->orderBy('id', 'desc')
             ->skip(($page * $pageSize)  - $pageSize)
             ->take($page * $pageSize)

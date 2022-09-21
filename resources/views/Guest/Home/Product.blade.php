@@ -6,7 +6,7 @@
                 <div class="block2-pic hov-img0">
                     <img src="{{ url($product->thumb) }}" alt="IMG-PRODUCT">
 
-                    <a href="#"
+                    <a href="/san-pham/{{ $product->slug }}.html"
                         class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
                         Xem chi tiết
                     </a>
@@ -14,7 +14,8 @@
 
                 <div class="block2-txt flex-w flex-t p-t-14">
                     <div class="block2-txt-child1 flex-col-l ">
-                        <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                        <a href="/san-pham/{{ $product->slug }}.html"
+                            class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
                             {{ $product->name }}
                         </a>
 

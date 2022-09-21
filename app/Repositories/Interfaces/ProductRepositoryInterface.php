@@ -9,6 +9,13 @@ use App\Models\Product;
 interface ProductRepositoryInterface
 {
     /**
+     * Hiển thị chi tiết sản phẩm
+     *
+     *
+     */
+    public function getProductBySlug($slug);
+
+    /**
      *
      * @return Collection Danh sách sản phẩm đã active
      */
