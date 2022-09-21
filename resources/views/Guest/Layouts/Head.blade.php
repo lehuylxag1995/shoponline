@@ -33,4 +33,5 @@
     <link rel="stylesheet" type="text/css" href="/Guest/css/main.css">
 
     <!--===============================================================================================-->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>

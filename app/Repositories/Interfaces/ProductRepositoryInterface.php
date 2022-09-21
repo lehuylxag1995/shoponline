@@ -10,6 +10,12 @@ interface ProductRepositoryInterface
 {
     /**
      *
+     * @return Collection Danh sách sản phẩm đã active
+     */
+    public function getListActive($page = 1);
+
+    /**
+     *
      * @return bool thành công hay không
      */
     public function Store(StoreProductRequest $req);

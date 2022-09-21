@@ -98,3 +98,4 @@
 </script>
 <!--===============================================================================================-->
 <script src="/guest/js/main.js"></script>
+<script src="/guest/js/product.js"></script>
