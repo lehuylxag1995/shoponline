@@ -27,7 +27,11 @@ class ViewServiceProvider extends ServiceProvider
     {
         // Using class based composers...
         View::composer(
-            ['guest.home.app', 'guest.menu.product'],
+            [
+                'guest.home.app',
+                'guest.product.show',
+                'guest.menu.product'
+            ],
             MenuComposer::class
         );
 

@@ -59,4 +59,15 @@ class HomeController extends Controller
             'ListProduct' => $products
         ]);
     }
+
+    public function ShowProduct($slug)
+    {
+        $product = $this->ProductRepository->getProductBySlug($slug);
+        $products = $this->MenuRepository->getListProductRelatedByMenu($product->menu->id, $product->id, 4);
+
+        return view('guest.product.show', [
+            'product' => $product,
+            'products' => $products
+        ]);
+    }
 }

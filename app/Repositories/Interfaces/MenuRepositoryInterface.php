@@ -15,6 +15,9 @@ interface MenuRepositoryInterface
      */
     public function getListProductByMenu($idMenu, $price = null);
 
+
+    public function getListProductRelatedByMenu($idMenu, $idProduct, $limit = null);
+
     /**
      * Tìm 1 menu bằng slug
      *
