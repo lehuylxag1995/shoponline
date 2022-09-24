@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\CartController;
+use App\Http\Controllers\Admin\CustomerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -8,7 +10,6 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SlideController;
 use App\Http\Controllers\Guest\HomeController;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Redirect;
 
 /*
@@ -66,9 +67,19 @@ Route::middleware(['auth'])->group(function () {
                 return Redirect::route('products.index');
             });
 
-        Route::resource('/slide', SlideController::class)->except(['show'])
+        Route::resource('slide', SlideController::class)->except(['show'])
             ->missing(function () {
                 return Redirect::route('slide.index');
+            });
+
+        Route::resource('cart', CartController::class)->except(['show'])
+            ->missing(function () {
+                return Redirect::route('cart.index');
+            });
+
+        Route::resource('customer', CustomerController::class)->except(['show'])
+            ->missing(function () {
+                return Redirect::route('customer.index');
             });
     });
 });
