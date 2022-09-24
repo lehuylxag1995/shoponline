@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Slide;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreSlideRequest extends FormRequest
+class UpdateSlideRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,18 +26,19 @@ class StoreSlideRequest extends FormRequest
         return [
             'name' => 'required|max:255',
             'url' => 'required|max:50',
-            'thumb' => 'required|image',
+            'sort_by' => 'required|numeric|gte:1',
+            'thumb' => 'image',
         ];
     }
-
 
     public function messages()
     {
         return [
             'name.required' => 'Vui lòng nhập tên ảnh quảng cáo',
             'url.required' => 'Vui lòng nhập tên miền website liên kết',
-            'thumb.required' => 'Bạn chưa chọn ảnh quảng cáo',
             'thumb.image' => 'Ảnh quảng cáo phải là hình ảnh',
+            'sort_by.required' => 'Vui lòng nhập thứ tự',
+            'sort_by.gte' => 'Số thứ tự phải lớn hơn hoặc bằng 1',
         ];
     }
 }

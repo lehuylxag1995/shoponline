@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Slide;
-use App\Http\Requests\StoreSlideRequest;
-use App\Http\Requests\UpdateSlideRequest;
+use App\Http\Requests\Slide\StoreSlideRequest;
+use App\Http\Requests\Slide\UpdateSlideRequest;
 use App\Repositories\Interfaces\SlideRepositoryInterface;
 
 class SlideController extends Controller
@@ -40,7 +40,7 @@ class SlideController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreSlideRequest  $request
+     * @param  \App\Http\Requests\Slide\StoreSlideRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreSlideRequest $req)
@@ -66,7 +66,7 @@ class SlideController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateSlideRequest  $request
+     * @param  \App\Http\Requests\Slide\UpdateSlideRequest  $request
      * @param  \App\Models\Slide  $slide
      * @return \Illuminate\Http\Response
      */
