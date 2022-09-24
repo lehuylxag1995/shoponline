@@ -40,7 +40,7 @@ class SlideController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\Slide\StoreSlideRequest  $request
+     * @param  App\Http\Requests\Slide\StoreSlideRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreSlideRequest $req)

@@ -2,8 +2,8 @@
 
 namespace App\Repositories\Interfaces;
 
-use App\Http\Requests\StoreSlideRequest;
-use App\Http\Requests\UpdateSlideRequest;
+use App\Http\Requests\Slide\StoreSlideRequest;
+use App\Http\Requests\Slide\UpdateSlideRequest;
 use App\Models\Slide;
 
 interface SlideRepositoryInterface
