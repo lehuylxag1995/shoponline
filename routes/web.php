@@ -28,6 +28,11 @@ Route::post('/LoadMore', [HomeController::class, 'LoadMore']);
 Route::get('/danh-muc/{slug?}.html', [HomeController::class, 'LoadProductByMenu']);
 Route::get('/san-pham/{slug?}.html', [HomeController::class, 'ShowProduct']);
 
+Route::get('/gio-hang', [HomeController::class, 'ListCartSession'])->name('CartSession.List');
+Route::post('/gio-hang', [HomeController::class, 'StoreCartSession']);
+Route::get('/gio-hang/remove/{id?}', [HomeController::class, 'RemoveItemCartSession']);
+Route::post('/gio-hang/UpdateCartSession', [HomeController::class, 'UpdateItemCartSession'])->name('Update.Cart.Session');
+
 //==============================================================================
 
 // GET URL:/login

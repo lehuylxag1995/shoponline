@@ -6,9 +6,11 @@ use Illuminate\Support\ServiceProvider;
 use App\Repositories\Interfaces\MenuRepositoryInterface;
 use App\Repositories\Interfaces\ProductRepositoryInterface;
 use App\Repositories\Interfaces\SlideRepositoryInterface;
+use App\Repositories\Interfaces\CartRepositoryInterface;
 use App\Repositories\MenuRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\SlideRepository;
+use App\Repositories\CartRepository;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -22,6 +24,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(MenuRepositoryInterface::class, MenuRepository::class);
         $this->app->bind(ProductRepositoryInterface::class, ProductRepository::class);
         $this->app->bind(SlideRepositoryInterface::class, SlideRepository::class);
+        $this->app->bind(CartRepositoryInterface::class, CartRepository::class);
     }
 
     /**

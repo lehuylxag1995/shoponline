@@ -13,6 +13,19 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductRepository implements ProductRepositoryInterface
 {
+    public function getProductByArray($arrId)
+    {
+        try {
+            $data = Product::select('id', 'name', 'price', 'thumb')
+                ->where('active', 1)
+                ->whereIn('id', $arrId)
+                ->get();
+            return $data;
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
+    }
+
     public function getProductBySlug($slug)
     {
         try {
@@ -24,6 +37,7 @@ class ProductRepository implements ProductRepositoryInterface
             dd($th->getMessage());
         }
     }
+
     public function getListActive($page = 1)
     {
         $pageSize = 16;

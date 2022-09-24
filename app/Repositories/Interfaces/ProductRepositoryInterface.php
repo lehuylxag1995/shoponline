@@ -8,6 +8,13 @@ use App\Models\Product;
 
 interface ProductRepositoryInterface
 {
+
+    /**
+     * @param array $arrId
+     * @return Collection Danh sách
+     */
+    public function getProductByArray($arrId);
+
     /**
      * Hiển thị chi tiết sản phẩm
      *
