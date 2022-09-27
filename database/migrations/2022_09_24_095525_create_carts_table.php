@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('customer_id');
             $table->bigInteger('product_id');
             $table->integer('quantity');
-            $table->decimal('price');
+            $table->bigInteger('price');
             $table->timestamps();
 
             $table->foreign('customer_id')

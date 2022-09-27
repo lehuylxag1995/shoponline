@@ -33,6 +33,7 @@ Route::get('/gio-hang', [HomeController::class, 'ListCartSession'])->name('CartS
 Route::post('/gio-hang', [HomeController::class, 'StoreCartSession']);
 Route::get('/gio-hang/remove/{id?}', [HomeController::class, 'RemoveItemCartSession']);
 Route::post('/gio-hang/UpdateCartSession', [HomeController::class, 'UpdateItemCartSession'])->name('Update.Cart.Session');
+Route::post('/gio-hang/CheckOutCartSession', [HomeController::class, 'CheckOutCartSession'])->name('Checkout.Cart.Session');
 
 //==============================================================================
 

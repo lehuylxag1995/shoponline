@@ -13,11 +13,11 @@
             </span>
         </div>
     </div>
-    {{-- <form class="bg0 p-t-75 p-b-85"> --}}
+
+
+
     <div class="container bg0 p-t-40 p-b-85">
         <div class="row">
-
-
             {{-- Thông tin giỏ hàng --}}
             <div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
                 <div class="m-l-25 m-r--38 m-lr-0-xl">
@@ -68,7 +68,7 @@
                                         </tr>
                                         <input type="hidden" name="productId[]" value="{{ $product->id }}">
                                     @empty
-                                        <h1>Chưa có sản phẩm nào</h1>
+                                        @include('guest.layouts.alert')
                                     @endforelse
                                 </tbody>
                             </table>
@@ -88,9 +88,8 @@
             {{-- Thanh toán giỏ hàng --}}
             <div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
                 <div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
-                    <form action="" method="post">
-
-
+                    <form action="{{ route('Checkout.Cart.Session') }}" method="post">
+                        @csrf
                         <h4 class="mtext-109 cl2 p-b-30">
                             Thanh toán giỏ hàng
                         </h4>
@@ -133,7 +132,7 @@
                             </div>
 
                             <div class="size-209 p-t-1">
-                                <input class="mtext-110 cl2" name="" value="{{ number_format($priceToTalCart) }}" />
+                                <input class="mtext-110 cl2" name="payment" value="{{ number_format($priceToTalCart) }}" />
                             </div>
                         </div>
 
@@ -147,5 +146,4 @@
 
         </div>
     </div>
-    {{-- </form> --}}
 @endsection

@@ -25,4 +25,11 @@ interface CartRepositoryInterface
      * @return bool Xoá thành công hay không ?
      */
     public function UpdateItemCartBySession(array $arrProductId, array $arrQuantity);
+
+    /**
+     * Thêm vào giỏ hàng với mã khách hàng
+     *
+     * @return bool Thành công hay không
+     */
+    public function StoreCartWithIdCustomer(int $idCustomer, array $dataCart);
 }

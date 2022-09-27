@@ -2,14 +2,48 @@
 
 namespace App\Repositories;
 
+use App\Models\Cart;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\Repositories\Interfaces\CartRepositoryInterface;
+use App\Repositories\Interfaces\ProductRepositoryInterface;
 use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Session;
 
 class CartRepository implements CartRepositoryInterface
 {
+    private $ProductRepository;
+    public function __construct(ProductRepositoryInterface $p)
+    {
+        $this->ProductRepository = $p;
+    }
+    public function StoreCartWithIdCustomer(int $idCustomer, array $dataCart)
+    {
+        try {
+            $customer = Customer::find($idCustomer);
+
+            $arrayIdProducts = array_keys($dataCart);
+            $ListProduct = $this->ProductRepository->getProductByArray($arrayIdProducts);
+
+            foreach ($ListProduct as $i => $product) {
+                $quantity = $dataCart[$product->id];
+
+                $cartItem = new Cart();
+                $cartItem->customer_id = $customer->id;
+                $cartItem->product_id = $product->id;
+                $cartItem->quantity = $quantity;
+                $cartItem->price = $product->price * $quantity;
+                $cartItem->save();
+            }
+
+            return true;
+        } catch (Exception $e) {
+            dd($e->getMessage());
+            return false;
+        }
+    }
+
     public function UpdateItemCartBySession(array $arrProductId, array $arrQuantity)
     {
         try {
@@ -27,6 +61,7 @@ class CartRepository implements CartRepositoryInterface
             return false;
         }
     }
+
     public function RemoveItemCartBySession($idProduct)
     {
         try {

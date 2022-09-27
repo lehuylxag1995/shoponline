@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('email', 50);
             $table->string('address', 150);
             $table->text('note');
-            $table->decimal('payment');
+            $table->bigInteger('payment');
             $table->timestamps();
         });
     }
