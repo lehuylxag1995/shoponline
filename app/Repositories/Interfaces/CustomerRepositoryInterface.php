@@ -13,4 +13,12 @@ interface CustomerRepositoryInterface
      * @return int $id
      */
     public function CreatedReturnId($req);
+
+    /**
+     * Lấy model customer bằng Id
+     *
+     * @param int $idCustomer
+     * @return model
+     */
+    public function getCustomerById($idCustomer);
 }

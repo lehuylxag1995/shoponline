@@ -11,6 +11,14 @@ use Illuminate\Support\Facades\Session;
 
 class CustomerRepository implements CustomerRepositoryInterface
 {
+    public function getCustomerById($idCustomer)
+    {
+        try {
+            return Customer::all()->where('id', $idCustomer)->firstOrFail();
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
+    }
     public function CreatedReturnId($req)
     {
         try {

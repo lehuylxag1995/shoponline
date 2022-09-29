@@ -3,12 +3,16 @@
 namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\ProcessSendMail;
+use App\Mail\OrderShipped;
 use App\Repositories\Interfaces\CartRepositoryInterface;
 use App\Repositories\Interfaces\CustomerRepositoryInterface;
 use App\Repositories\Interfaces\MenuRepositoryInterface;
 use App\Repositories\Interfaces\ProductRepositoryInterface;
 use App\Repositories\Interfaces\SlideRepositoryInterface;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -41,6 +45,11 @@ class HomeController extends Controller
             $cart = $req->session()->get('cart');
             $isSuccess = $this->CartRepository->StoreCartWithIdCustomer($idCustomer, $cart);
             if ($isSuccess) {
+
+                // $customer = $this->CustomerRepository->getCustomerById($idCustomer);
+                // ProcessSendMail::dispatch($customer->email)
+                //     ->delay(now()->addSeconds(3));
+
                 $req->session()->forget('cart');
                 return redirect()->route('CartSession.List')->with('success', 'Đặt hàng thành công');
             } else
